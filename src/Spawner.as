@@ -1,6 +1,7 @@
 package
 {
-	import org.flixel.*;
+	import flixel.*;
+	import flixel.effects.particles.FlxEmitter;
 
 	public class Spawner extends FlxSprite
 	{
@@ -26,7 +27,7 @@ package
 			_botBullets = BotBullets;
 			_botGibs = BotGibs;
 			_player = ThePlayer;
-			_timer = FlxG.random()*20;
+			_timer = FlxG.random.float()*20;
 			_open = false;
 			health = 8;
 

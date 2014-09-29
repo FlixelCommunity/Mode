@@ -1,6 +1,6 @@
 package
 {
-	import org.flixel.*;
+	import flixel.*;
 	
 	[SWF(width="640", height="480", backgroundColor="#000000")]
 	[Frame(factoryClass="Preloader")]
@@ -9,7 +9,10 @@ package
 	{
 		public function Mode():void
 		{
-			super(320,240,MenuState,2,50,50);
+			// If the game should use hardware acceleration or not.
+			var useGPU:Boolean = true;
+			
+			super(320,240,MenuState,2,50,50,false,useGPU);
 			forceDebugger = true;
 		}
 	}

@@ -1,6 +1,7 @@
 package
 {
-	import org.flixel.*;
+	import flixel.*;
+	import flixel.util.*;
 
 	public class EnemyBullet extends FlxSprite
 	{
@@ -47,7 +48,7 @@ package
 		{
 			FlxG.play(SndShoot,0.5);
 			super.reset(Location.x-width/2,Location.y-height/2);
-			FlxU.rotatePoint(0,speed,0,0,Angle,_point);
+			FlxPoint.rotate(0,speed,0,0,Angle,_point);
 			velocity.x = _point.x;
 			velocity.y = _point.y;
 			solid = true;

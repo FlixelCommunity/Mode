@@ -1,6 +1,7 @@
 package
 {
-	import org.flixel.*;
+	import flixel.*;
+	import flixel.util.FlxPoint;
 
 	public class Bullet extends FlxSprite
 	{

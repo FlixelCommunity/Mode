@@ -2,9 +2,14 @@ package
 {
 	import flash.geom.Rectangle;
 	import flash.net.SharedObject;
+	import flixel.plugin.replay.FlxReplay;
 	
-	import org.flixel.*;
-	import org.flixel.plugin.DebugPathDisplay;
+	import flixel.*;
+	import flixel.ui.*;
+	import flixel.util.*;
+	import flixel.effects.particles.FlxEmitter;
+	import flixel.plugin.pathdisplay.DebugPathDisplay;
+	import flixel.system.FlxSave;
 
 	public class MenuState extends FlxState
 	{
@@ -82,6 +87,9 @@ package
 			testPath = new FlxPath();
 			add(pathFollower);//*/
 			
+			// Enable game replay plugin
+			FlxG.addPlugin(new FlxReplay());
+			
 			FlxG.mouse.show(ImgCursor,2);
 		}
 		
@@ -124,8 +132,8 @@ package
 				title1.color = 0xd8eba2;
 				title2.color = 0xd8eba2;
 				gibs.start(true,5);
-				title1.angle = FlxG.random()*30-15;
-				title2.angle = FlxG.random()*30-15;
+				title1.angle = FlxG.random.float()*30-15;
+				title2.angle = FlxG.random.float()*30-15;
 				
 				//Then we're going to add the text and buttons and things that appear
 				//If we were hip we'd use our own button animations, but we'll just recolor
@@ -196,7 +204,7 @@ package
 		protected function onFade():void
 		{
 			if(attractMode)
-				FlxG.loadReplay((FlxG.random()<0.5)?(new Attract1()):(new Attract2()),new PlayState(),["ANY"],22,onDemoComplete);
+				(FlxG.getPlugin(FlxReplay) as FlxReplay).loadReplay((FlxG.random.float() < 0.5)?(new Attract1()):(new Attract2()), new PlayState(), ["ANY"], 22, onDemoComplete);
 			else
 				FlxG.switchState(new PlayState());
 		}
@@ -213,7 +221,7 @@ package
 		//once the gameplay demo has faded out.
 		protected function onDemoFaded():void
 		{
-			FlxG.stopReplay();
+			(FlxG.getPlugin(FlxReplay) as FlxReplay).stopReplay();
 			FlxG.resetGame();
 		}
 	}

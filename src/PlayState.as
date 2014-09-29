@@ -1,6 +1,10 @@
 package
 {
-	import org.flixel.*;
+	import flixel.*;
+	import flixel.effects.particles.FlxEmitter;
+	import flixel.tile.FlxTileblock;
+	import flixel.ui.FlxText;
+	import flixel.util.FlxPoint;
 
 	public class PlayState extends FlxState
 	{
@@ -338,12 +342,12 @@ package
 			var sy:uint;
 			if(Spawners)
 			{
-				sx = 2+FlxG.random()*(rw-7);
-				sy = 2+FlxG.random()*(rw-7);
+				sx = 2+FlxG.random.float()*(rw-7);
+				sy = 2+FlxG.random.float()*(rw-7);
 			}
 			
 			//then place a bunch of blocks
-			var numBlocks:uint = 3+FlxG.random()*4;
+			var numBlocks:uint = 3+FlxG.random.float()*4;
 			if(!Spawners) numBlocks++;
 			var maxW:uint = 10;
 			var minW:uint = 2;
@@ -359,10 +363,10 @@ package
 				do
 				{
 					//keep generating different specs if they overlap the spawner
-					bw = minW + FlxG.random()*(maxW-minW);
-					bh = minH + FlxG.random()*(maxH-minH);
-					bx = -1 + FlxG.random()*(rw+1-bw);
-					by = -1 + FlxG.random()*(rw+1-bh);
+					bw = minW + FlxG.random.float()*(maxW-minW);
+					bh = minH + FlxG.random.float()*(maxH-minH);
+					bx = -1 + FlxG.random.float()*(rw+1-bw);
+					by = -1 + FlxG.random.float()*(rw+1-bh);
 					if(Spawners)
 						check = ((sx>bx+bw) || (sx+3<bx) || (sy>by+bh) || (sy+3<by));
 					else

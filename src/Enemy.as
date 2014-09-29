@@ -2,7 +2,9 @@ package
 {
 	import flash.geom.Point;
 	
-	import org.flixel.*;
+	import flixel.*;
+	import flixel.util.*;
+	import flixel.effects.particles.FlxEmitter;
 
 	public class Enemy extends FlxSprite
 	{
@@ -116,8 +118,8 @@ package
 			
 			//Set the bot's movement speed and direction
 			//based on angle and whether the jets are on.
-			_thrust = FlxU.computeVelocity(_thrust,(jetsOn?90:0),drag.x,60);
-			FlxU.rotatePoint(0,_thrust,0,0,angle,velocity);
+			_thrust = FlxMath.computeVelocity(_thrust,(jetsOn?90:0),drag.x,60);
+			FlxPoint.rotate(0,_thrust,0,0,angle,velocity);
 
 			//Shooting - three shots every few seconds
 			if(onScreen())
@@ -176,10 +178,10 @@ package
 		
 		//Even though we updated the jets after we updated the Enemy,
 		//we want to draw the jets below the Enemy, so we call _jets.draw() first.
-		override public function draw():void
+		override public function draw(Camera:FlxCamera):void
 		{
-			_jets.draw();
-			super.draw();
+			_jets.draw(Camera);
+			super.draw(Camera);
 		}
 		
 		//This function is called when player bullets hit the Enemy.
@@ -212,7 +214,7 @@ package
 		//the Enemy's midpoint and the player's midpoint.
 		protected function angleTowardPlayer():Number
 		{
-			return FlxU.getAngle(getMidpoint(_point),_player.getMidpoint(_playerMidpoint));
+			return FlxPoint.angleBetween(getMidpoint(_point),_player.getMidpoint(_playerMidpoint));
 		}
 	}
 }

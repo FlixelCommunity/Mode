@@ -1,6 +1,7 @@
 package
 {
-	import org.flixel.*;
+	import flixel.*;
+	import flixel.effects.particles.FlxEmitter;
 
 	public class Player extends FlxSprite
 	{

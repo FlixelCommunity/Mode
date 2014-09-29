@@ -1,6 +1,8 @@
 package
 {
-	import org.flixel.*;
+	import flixel.*;
+	import flixel.effects.particles.FlxEmitter;
+	import flixel.ui.FlxText;
 
 	public class VictoryState extends FlxState
 	{
