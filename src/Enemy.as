@@ -118,7 +118,7 @@ package
 			
 			//Set the bot's movement speed and direction
 			//based on angle and whether the jets are on.
-			_thrust = FlxMath.computeVelocity(_thrust,(jetsOn?90:0),drag.x,60);
+			_thrust = FlxMath.computeVelocity(FlxG.elapsed,_thrust,(jetsOn?90:0),drag.x,60);
 			FlxPoint.rotate(0,_thrust,0,0,angle,velocity);
 
 			//Shooting - three shots every few seconds
